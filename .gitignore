@@ -71,3 +71,4 @@ metro.config.js
 .ruby-version
 .watchmanconfig
 .bundle
+/App.tsx
