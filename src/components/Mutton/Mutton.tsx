@@ -27,15 +27,15 @@ interface MuttonProps {
 interface MuttonStyleProps {
   align?: 'center' | 'right' | 'left';
   size?: 'big' | 'medium' | 'fit';
-  type?: 'text' | 'withIcon' | 'icon';
+  type?: 'text' | 'icon';
   disabled?: boolean;
 }
 const Mutton = ({
   align,
   disabled,
   size,
-  type,
   text,
+  type,
   icon,
   onClick,
   style,
@@ -46,46 +46,21 @@ const Mutton = ({
         <TouchableOpacity
           onPress={onClick}
           disabled={disabled}
-          style={
-            (muttonStyles({align, size, disabled}).TextButtonStyle, style)
-          }>
+          style={[
+            {...muttonStyles({align, size, disabled}).TextButtonStyle},
+            style,
+          ]}>
           <Mext weight="600" text={text} />
         </TouchableOpacity>
       ) : type == 'icon' && icon ? (
         <TouchableOpacity
           disabled={disabled}
           onPress={onClick}
-          style={
-            (muttonStyles({align, size, disabled}).IconButtonStyle, style)
-          }>
-          {icon}
-        </TouchableOpacity>
-      ) : type == 'withIcon' && icon && text ? (
-        <TouchableOpacity
-          onPress={onClick}
-          disabled={disabled}
           style={[
+            {...muttonStyles({align, size, disabled}).IconButtonStyle},
             style,
-            {
-              ...muttonStyles({align}).TextWithIconStyle,
-              width: '100%',
-              flexDirection: 'row',
-              padding: 12,
-              height: 60,
-              borderRadius: 8,
-              backgroundColor: disabled ? ShadowAccentColor : AccentColor,
-              alignItems: 'center',
-            },
           ]}>
-          <View
-            style={{
-              paddingRight: 8,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            {icon}
-          </View>
-          <Mext text={text} weight="600" />
+          {icon}
         </TouchableOpacity>
       ) : null}
     </>
@@ -136,9 +111,6 @@ const muttonStyles = ({align, size, disabled}: MuttonStyleProps) => {
       borderRadius: 8,
       aspectRatio: 1,
       backgroundColor: disabled ? ShadowAccentColor : AccentColor,
-    },
-    TextWithIconStyle: {
-      justifyContent: alignStyle,
     },
   });
 };

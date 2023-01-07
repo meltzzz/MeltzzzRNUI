@@ -10,5 +10,5 @@ interface MuttonProps {
     onClick: (e: GestureResponderEvent) => void | undefined;
     style?: StyleProp<ViewStyle>;
 }
-declare const Mutton: ({ align, disabled, size, type, text, icon, onClick, style, }: MuttonProps) => JSX.Element;
+declare const Mutton: ({ align, disabled, size, text, type, icon, onClick, style, }: MuttonProps) => JSX.Element;
 export default Mutton;
